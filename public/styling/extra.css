@@ -12,3 +12,19 @@
     background-color: red;
     border-radius: 50%;
   }
+
+  .itemwrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    row-gap: 50px;
+  }
+
+  .itemwrapper2{
+    width: 450px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  }
