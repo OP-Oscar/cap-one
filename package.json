@@ -2,7 +2,7 @@
   "name": "event-web",
   "version": "1.0.0",
   "description": "decor rental website",
-  "main": "index.js",
+  "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ta-css": "npx tailwindcss -i ./public/src/input.css -o ./public/styling/output.css --watch"
@@ -13,6 +13,9 @@
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "flowbite": "^1.6.5"
   }
 }

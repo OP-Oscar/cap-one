@@ -6,14 +6,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* body{
+body{
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 0 10px;
   justify-content: center;
   min-height: 100vh;
-} */
+}
 
 
 .wrapper{
@@ -84,7 +84,7 @@ header .current-date{
   color: #aaa;
 }
 .days li.active{
-  color: black;
+  color: red;
 }
 .days li::before{
   position: absolute;
@@ -98,8 +98,13 @@ header .current-date{
   transform: translate(-50%, -50%);
 }
 .days li.active::before{
-    background-color: lightblue;
+  /* background: #f2f2f2; */
 }
+
+.days li.active:hover::before{
+  background: #f2f2f2;
+}
+
 .days li:not(.active):hover::before{
   background: #f2f2f2;
 }
