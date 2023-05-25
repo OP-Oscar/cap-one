@@ -12,6 +12,42 @@ console.log(currentHTMLFile);
 //event listeners
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // Get user's location using Geolocation API
 // if (navigator.geolocation) {
 //     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);

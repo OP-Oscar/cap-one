@@ -1,6 +1,10 @@
 //import
+require('dotenv').config()
 const express = require('express');
 const userController = require('./controllers/userController');
+const {seed} = require('./seed')
+const {SERVER_PORT} = process.env
+
 
 //invoking
 const app = express();
@@ -12,12 +16,11 @@ app.use(express.static('public'));
 //destructuring from userController
 const { } = userController;
 
-//setting port#
-const portNum = 4000;
+
 
 
 //routes
+app.post('/seed', seed)
 
 
-
-app.listen(portNum, ()=> console.log(`server running on ${portNum}`));
+app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
