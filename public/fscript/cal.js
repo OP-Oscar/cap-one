@@ -48,3 +48,9 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 
 
 
+daysTag.addEventListener('click', function(event) {
+    // Update the value attribute with the selected date
+    console.log(daysTag)
+    dateInput.setAttribute('value', event.target.value);
+    console.log(daysTag.value)
+  });

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Today's Date</title>
+  <!-- Other meta tags, stylesheets, etc. -->
+</head>
+<body>
+  <h1>Today's Date</h1>
+
+  <!-- Include your script here -->
+  <script>
+    // Get the current date
+    var today = new Date();
+
+    // Extract the date, month, and year
+    var date = today.getDate();
+    var month = today.getMonth() + 1; // Note: Month is zero-indexed
+    var year = today.getFullYear();
+
+    // Create the date string
+    var dateString = month + '-' + date + '-' + year;
+
+    // Display a pop-up alert with the date
+    alert('Today is ' + dateString);
+  </script>
+</body>
+</html>

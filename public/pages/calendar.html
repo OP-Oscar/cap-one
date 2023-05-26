@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Date Selector Calendar</title>
+  <style>
+    /* Calendar container styles */
+    .calendar {
+      width: 500px;
+      height: 500px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Month navigation styles */
+    .month-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    /* Calendar table styles */
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .calendar-table th,
+    .calendar-table td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    /* Current date styles */
+    .current-date {
+      color: red;
+      font-weight: bold;
+    }
+
+    /* Hovered date styles */
+    .hovered-date {
+      background-color: lightgray;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <div class="month-navigation">
+      <span class="prev-month">&lt;</span>
+      <h3 class="current-month"></h3>
+      <span class="next-month">&gt;</span>
+    </div>
+    <table class="calendar-table">
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody class="calendar-body"></tbody>
+    </table>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Get today's date
+      var today = new Date();
+
+      // Get references to HTML elements
+      var currentMonthElement = document.querySelector(".current-month");
+      var calendarBodyElement = document.querySelector(".calendar-body");
+      var prevMonthElement = document.querySelector(".prev-month");
+      var nextMonthElement = document.querySelector(".next-month");
+
+      // Initialize the calendar
+      renderCalendar(today);
+
+      // Render the calendar for the given month
+      function renderCalendar(date) {
+        var year = date.getFullYear();
+        var month = date.getMonth();
+
+        // Set the current month text
+        currentMonthElement.textContent = getMonthName(month) + " " + year;
+
+        // Clear the calendar body
+        calendarBodyElement.innerHTML = "";
+
+        // Get the first day of the month
+        var firstDay = new Date(year, month, 1);
+
+        // Get the number of days in the month
+        var totalDays = new Date(year, month + 1, 0).getDate();
+
+        // Get the index of the first day in the week (0-6)
+        var firstDayIndex = firstDay.getDay();
+
+        // Create calendar cells for each day
+        for (var i = 0; i < totalDays + firstDayIndex; i++) {
+          var cell = document.createElement("td");
+          var day = i - firstDayIndex + 1;
+
+          // Handle cells before the start of the month
+          if (i < firstDayIndex) {
+            cell.textContent = "";
+          } else {
+            cell.textContent = day;
+
+            // Apply styles for the current date
+            if (
+              year === today.getFullYear() &&
+              month === today.getMonth() &&
+              day === today.getDate()
+            ) {
+              cell.classList.add("current-date");
+            }
+
+            // Add hover effect for date selection
+            cell.addEventListener("mouseover", function() {
+              this.classList.add("hovered-date");
+            });
+
+            cell.addEventListener("mouseout", function() {
+              this.classList.remove("hovered-date");
+            });
+          }
+
+          calendarBodyElement.appendChild(cell);
+        }
+      }
+
+      // Navigate to the previous month
+      prevMonthElement.addEventListener("click", function() {
+        var currentMonth = today.getMonth();
+        today.setMonth(currentMonth - 1);
+        renderCalendar(today);
+      });
+
+      // Navigate to the next month
+      nextMonthElement.addEventListener("click", function() {
+        var currentMonth = today.getMonth();
+        today.setMonth(currentMonth + 1);
+        renderCalendar(today);
+      });
+
+      // Get the month name for a given month index
+      function getMonthName(month) {
+        var months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ];
+        return months[month];
+      }
+    });
+  </script>
+</body>
+</html>

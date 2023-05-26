@@ -31,6 +31,7 @@ module.exports = {
         drop table if exists booked_items cascade;
         drop table if exists user_types cascade;
         drop table if exists type_assigned cascade;
+        drop table if exists cart;
 
 
         -- TO CREATE TABLES
@@ -103,6 +104,15 @@ module.exports = {
         );
 
 
+        CREATE TABLE "cart" (
+            "cart_id" serial NOT NULL,
+            "item_id" integer NOT NULL,
+            "booking_date" DATE NOT NULL,
+            CONSTRAINT "cart_pk" PRIMARY KEY ("cart_id")
+        ) WITH (
+          OIDS=FALSE
+        );
+
 
         CREATE TABLE "events" (
             "event_id" serial NOT NULL,
@@ -168,7 +178,8 @@ module.exports = {
         ALTER TABLE "booked_items" ADD CONSTRAINT "booked_items_fk0" FOREIGN KEY ("event_id") REFERENCES "events"("event_id") ON DELETE CASCADE;
         ALTER TABLE "booked_items" ADD CONSTRAINT "booked_items_fk1" FOREIGN KEY ("package_id") REFERENCES "packages"("package_id");
         ALTER TABLE "booked_items" ADD CONSTRAINT "booked_items_fk2" FOREIGN KEY ("item_id") REFERENCES "items"("item_id");
-
+        
+        ALTER TABLE "cart" ADD CONSTRAINT "cart_fk0" FOREIGN KEY ("item_id") REFERENCES "items"("item_id");
 
         ALTER TABLE "type_assigned" ADD CONSTRAINT "type_assigned_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
         ALTER TABLE "type_assigned" ADD CONSTRAINT "type_assigned_fk1" FOREIGN KEY ("type_id") REFERENCES "user_types"("user_type_id");
